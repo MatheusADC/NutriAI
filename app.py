@@ -57,18 +57,6 @@ def upload_pdf():
             "triglicerideos": triglicerideos
         }
 
-    novo_resultado = Resultado(
-        nome=nome,
-        colesterol=colesterol,
-        glicose=glicose,
-        t3=t3,
-        t4=t4,
-        tsh=tsh,
-        triglicerideos=triglicerideos
-    )
-    db.session.add(novo_resultado)
-    db.session.commit()
-
     dados = {
         "Colesterol": {"valor": colesterol},
         "Glicose": {"valor": glicose},
@@ -79,6 +67,20 @@ def upload_pdf():
     }
 
     recomendacao = recomendar_dieta(dados)
+
+    novo_resultado = Resultado(
+        nome=nome,
+        colesterol=colesterol,
+        glicose=glicose,
+        t3=t3,
+        t4=t4,
+        tsh=tsh,
+        triglicerideos=triglicerideos,
+        recomendacao=recomendacao
+    )
+    db.session.add(novo_resultado)
+    db.session.commit()
+    
     return render_template('valoresCalculados.html', dados=resultados, recomendacoes=recomendacao, nome=nome)
 
 if __name__ == '__main__':
