@@ -18,6 +18,7 @@ class Resultado(db.Model):
     tsh = db.Column(db.Float)
     colesterol = db.Column(db.Float)
     triglicerideos = db.Column(db.Float)
+    recomendacao = db.Column(db.Text)
 
     def _repr_(self):
         return f'<Resultado {self.id} - {self.nome}>'
