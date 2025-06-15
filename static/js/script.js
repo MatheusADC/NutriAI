@@ -1,5 +1,14 @@
 document.getElementById("formRecomendacao").addEventListener("submit", async function(event) {
     event.preventDefault();
+
+    const divBotaoRecomendacao = document.getElementById("divRecomendacao");
+    const loading = document.getElementById("loading");
+    loading.style.display = "block"; 
+
+    if(loading.style.display == "block") {
+        divBotaoRecomendacao.style.display = "none";
+    }
+
     const formData = new FormData(this);
     const file = document.getElementById("pdfExame").files[0];
     const nome = document.getElementById("nome").value;
@@ -12,11 +21,13 @@ document.getElementById("formRecomendacao").addEventListener("submit", async fun
 
     if (!file && !colesterolTotal && !glicose && !t3 && !t4 && !tsh && !triglicerideos) {
         alert("Por favor, preencha os campos ou anexe um PDF.");
+        loading.style.display = "none"; 
         return;
     }
 
     if (file && !nome) {
         alert("O campo 'Nome' é obrigatório quando um PDF é anexado.");
+        loading.style.display = "none"; 
         return;
     }
 
@@ -39,6 +50,8 @@ document.getElementById("formRecomendacao").addEventListener("submit", async fun
             body: formData
         });
 
+        loading.style.display = "none"; 
+
         if (response.ok) {
             const htmlContent = await response.text();
             document.open();
@@ -49,5 +62,6 @@ document.getElementById("formRecomendacao").addEventListener("submit", async fun
         }
     } catch (error) {
         console.error("Erro ao enviar o formulário:", error);
+        loading.style.display = "none"; 
     }
 });
