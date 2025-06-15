@@ -102,3 +102,22 @@ body {
         transform: translateX(1);
     }
 }
+
+#listaRecomendacoes::-webkit-scrollbar {
+    width: 12px;
+}
+
+#listaRecomendacoes::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+#listaRecomendacoes::-webkit-scrollbar-thumb {
+    background-color: #30115e;
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+}
+
+#listaRecomendacoes::-webkit-scrollbar-thumb:hover {
+    background-color: #30115e;
+}
