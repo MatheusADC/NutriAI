@@ -1,6 +1,7 @@
 import openai
 import json
 import sys
+from utils import formatar_recomendacao
 
 def recomendar_dieta(resultados):
     client = openai.OpenAI(
@@ -22,7 +23,7 @@ def recomendar_dieta(resultados):
         )
 
         if hasattr(response, "choices"):
-            return response.choices[0].message.content
+            return formatar_recomendacao(response.choices[0].message.content)
         else:
             return "Nenhuma resposta recebida."
 
